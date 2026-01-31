@@ -59,7 +59,7 @@ $product_query = $conn->query("SELECT p.*, c.name as category_name, c.slug as ca
                               WHERE p.slug = '$slug' AND p.status = 1");
 
 if (!$product_query || $product_query->num_rows == 0) {
-    header("Location: <?php echo BASE_URL; ?>");
+    header("Location: " . BASE_URL);
     exit;
 }
 
@@ -786,7 +786,7 @@ if ($product['discount_price']) {
 
                             <!-- Overlay -->
                             <div class="product-overlay">
-                                <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($related['slug']); ?>/" class="btn btn-primary btn-sm">
+                                <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($related['slug']); ?>/" class="btn btn-primary btn-sm">
                                     <i class="fas fa-eye me-2"></i>Xem Chi Tiết
                                 </a>
                             </div>
@@ -795,7 +795,7 @@ if ($product['discount_price']) {
                         <!-- Product Info -->
                         <div class="p-4 bg-white">
                             <h5 class="product-name mb-2">
-                                <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($related['slug']); ?>/" class="text-dark text-decoration-none">
+                                <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($related['slug']); ?>/" class="text-dark text-decoration-none">
                                     <?php echo htmlspecialchars($related['name']); ?>
                                 </a>
                             </h5>
@@ -839,7 +839,7 @@ if ($product['discount_price']) {
                             </div>
 
                             <!-- CTA Button -->
-                            <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($related['slug']); ?>/" class="btn btn-outline-primary btn-sm w-100">
+                            <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($related['slug']); ?>/" class="btn btn-outline-primary btn-sm w-100">
                                 <i class="fas fa-shopping-cart me-2"></i>Chi Tiết
                             </a>
                         </div>
