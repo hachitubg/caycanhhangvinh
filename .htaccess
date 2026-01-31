@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /caycanhhangvinh/
+    RewriteBase /
     
     # Allow real files and directories
     RewriteCond %{REQUEST_FILENAME} !-f
