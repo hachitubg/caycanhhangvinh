@@ -10,7 +10,8 @@ include 'includes/config.php';
 $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 // Remove base path to get the route
-$route = str_replace(BASE_PATH, '', $request_uri);
+// Use ltrim instead of str_replace to avoid removing all slashes
+$route = ltrim($request_uri, '/');
 $route = trim($route, '/');
 
 // Remove query string if exists
