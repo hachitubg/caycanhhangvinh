@@ -58,9 +58,15 @@ $product_query = $conn->query("SELECT p.*, c.name as category_name, c.slug as ca
                               JOIN categories c ON p.category_id = c.id 
                               WHERE p.slug = '$slug' AND p.status = 1");
 
+// DEBUG: Remove before production
+echo "<!-- DEBUG shop-detail.php: slug='$slug', query result=" . ($product_query ? $product_query->num_rows : 'null') . " -->\n";
+
 if (!$product_query || $product_query->num_rows == 0) {
-    header("Location: " . BASE_URL);
-    exit;
+    // DEBUG: Show error instead of redirect
+    echo "<!-- DEBUG: Product not found for slug: $slug -->\n";
+    die("ERROR: Product with slug '$slug' not found. Query error: " . $conn->error);
+    // header("Location: " . BASE_URL);
+    // exit;
 }
 
 $product = $product_query->fetch_assoc();
