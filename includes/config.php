@@ -1,7 +1,9 @@
 <?php
 // Database Configuration - Auto-detect environment
 if (!defined('DB_HOST')) {
-    $hostname = explode(':', $_SERVER['HTTP_HOST'] ?? 'localhost')[0];
+    // Get HTTP_HOST safely (may not exist in CLI mode)
+    $http_host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $hostname = explode(':', $http_host)[0];
 
     // Set credentials based on environment
     if ($hostname === 'localhost' || $hostname === '127.0.0.1') {
@@ -32,7 +34,7 @@ if (!defined('DB_HOST')) {
     // Global variables - Dynamic Base Path
     // Detect environment (localhost or production)
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
-    $host = $_SERVER['HTTP_HOST'];
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 
     // Auto-detect base path based on environment
     // Check REAL hostname without port
