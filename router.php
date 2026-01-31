@@ -18,15 +18,15 @@ if (strpos($route, '?') !== false) {
     $route = explode('?', $route)[0];
 }
 
-// Split route into parts
-$route_parts = array_filter(explode('/', $route));
+// Split route into parts - array_filter removes empty parts and array_values re-indexes
+$route_parts = array_values(array_filter(explode('/', $route)));
 
 // Get first and second part (if exists)
 $first_part = isset($route_parts[0]) ? strtolower($route_parts[0]) : '';
 $second_part = isset($route_parts[1]) ? $route_parts[1] : ''; // Keep case for product slug
 
 // DEBUG: Uncomment to see routing info
-echo "<!-- DEBUG: Route: $route | Parts: " . implode(', ', $route_parts) . " | First: $first_part | Second: $second_part -->\n";
+// echo "<!-- DEBUG: Route: $route | Parts: " . implode(', ', $route_parts) . " | First: $first_part | Second: $second_part -->\n";
 
 // Default to home
 if (empty($route) || $route === 'index.php') {
