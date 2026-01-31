@@ -1,3 +1,7 @@
+<?php
+// Database connection should be included by the calling file
+// This file uses the global $conn variable
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +35,11 @@
 
         <!-- Template Stylesheet -->
         <link href="<?php echo BASE_URL; ?>css/style.css" rel="stylesheet">
+
+        <!-- Custom Product Card Styling -->
+        
+        <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/header.css">
+
     </head>
 
     <body>

@@ -79,9 +79,5 @@ switch ($first_part) {
 
 // If no route matches, show 404
 http_response_code(404);
-if (file_exists('backup-template/404.html')) {
-    include 'backup-template/404.html';
-} else {
-    echo '<h1>404 - Page Not Found</h1>';
-}
+include '404.php';
 ?>
