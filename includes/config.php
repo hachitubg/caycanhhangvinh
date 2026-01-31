@@ -22,11 +22,13 @@ $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : '
 $host = $_SERVER['HTTP_HOST'];
 
 // Auto-detect base path based on environment
-if (strpos($host, 'localhost') !== false || strpos($host, '127.0.0.1') !== false) {
+// Check REAL hostname without port
+$hostname = explode(':', $host)[0];
+if ($hostname === 'localhost' || $hostname === '127.0.0.1') {
     // Development/Localhost - include folder name
     $base_path = '/caycanhhangvinh/';
 } else {
-    // Production - root path
+    // Production - root path (always /)
     $base_path = '/';
 }
 
