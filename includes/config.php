@@ -1,9 +1,21 @@
 <?php
-// Database Configuration
-define('DB_HOST', 'localhost');
-define('DB_USER', 'dongson_user');
-define('DB_PASS', 'Dongson@2024#VPS');
-define('DB_NAME', 'caycanhhangvinh');
+// Database Configuration - Auto-detect environment
+$hostname = explode(':', $_SERVER['HTTP_HOST'] ?? 'localhost')[0];
+
+// Set credentials based on environment
+if ($hostname === 'localhost' || $hostname === '127.0.0.1') {
+    // Development/Localhost credentials
+    define('DB_HOST', 'localhost');
+    define('DB_USER', 'root');
+    define('DB_PASS', '');
+    define('DB_NAME', 'caycanhhangvinh');
+} else {
+    // Production/Host credentials
+    define('DB_HOST', 'localhost');
+    define('DB_USER', 'dongson_user');
+    define('DB_PASS', 'Dongson@2024#VPS');
+    define('DB_NAME', 'caycanhhangvinh');
+}
 
 // Create connection
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
