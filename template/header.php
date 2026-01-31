@@ -38,7 +38,7 @@
 
         <!-- Custom Product Card Styling -->
         
-        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/header.css">
 
     </head>
 

@@ -33,7 +33,7 @@ if (strpos($host, 'localhost') !== false || strpos($host, '127.0.0.1') !== false
 define('BASE_URL', $protocol . '://' . $host . $base_path);
 define('BASE_PATH', $base_path);
 define('ADMIN_URL', BASE_URL . 'admin/');
-define('UPLOAD_PATH', $_SERVER['DOCUMENT_ROOT'] . '/caycanhhangvinh/admin/uploads/');
+define('UPLOAD_PATH', $_SERVER['DOCUMENT_ROOT'] . '/admin/uploads/');
 define('UPLOAD_URL', BASE_URL . 'admin/uploads/');
 
 // Include functions

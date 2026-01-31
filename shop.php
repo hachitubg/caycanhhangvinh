@@ -52,7 +52,7 @@ $products_query = $conn->query("SELECT p.*, c.name as category_name FROM product
                               LIMIT $per_page OFFSET $offset");
 ?>
 
-<link rel="stylesheet" href="css/shop.css">
+<link rel="stylesheet" href="<?php echo BASE_URL; ?>css/shop.css">
 
 <!-- Shop Section Start -->
 <div class="shop-section">

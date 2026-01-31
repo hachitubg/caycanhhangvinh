@@ -44,7 +44,7 @@ $categories_result = $conn->query("SELECT id, name FROM categories WHERE status 
     <link rel="icon" type="image/png" href="<?php echo BASE_URL; ?>img/hangvinh_icon.png">
     <link rel="apple-touch-icon" href="<?php echo BASE_URL; ?>img/hangvinh_icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>admin/css/admin.css">
 </head>
 <body>
     <div class="admin-container">
@@ -82,7 +82,7 @@ $categories_result = $conn->query("SELECT id, name FROM categories WHERE status 
                     </a>
                 </li>
                 <li style="margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-                    <a href="/caycanhhangvinh/">
+                    <a href="<?php echo BASE_URL; ?>">
                         <i class="fas fa-home"></i>
                         Trang Chủ
                     </a>
@@ -225,6 +225,6 @@ $categories_result = $conn->query("SELECT id, name FROM categories WHERE status 
         </main>
     </div>
 
-    <script src="js/admin.js"></script>
+    <script src="<?php echo BASE_URL; ?>admin/js/admin.js"></script>
 </body>
 </html>
