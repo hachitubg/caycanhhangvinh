@@ -34,6 +34,9 @@ if (empty($route) || $route === 'index.php') {
     exit;
 }
 
+// DEBUG: Log routing info
+error_log("DEBUG Router: route=$route, first_part=$first_part, second_part=$second_part, REQUEST_URI=" . $_SERVER['REQUEST_URI']);
+
 // Handle routes
 switch ($first_part) {
     case 'shop':
@@ -41,6 +44,7 @@ switch ($first_part) {
             // shop-detail route: /shop/{product-slug}/
             // Pass the slug to shop-detail.php via GET
             $_GET['slug'] = $second_part;
+            error_log("DEBUG Router: Setting slug=$second_part");
             include 'shop-detail.php';
         } else {
             // shop listing route: /shop
