@@ -55,17 +55,6 @@ CREATE TABLE IF NOT EXISTS media (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS media (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(255) NOT NULL,
-    description TEXT,
-    image VARCHAR(255) NOT NULL,
-    type VARCHAR(50) DEFAULT 'banner',
-    status TINYINT DEFAULT 1,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
 -- Create indexes
 CREATE INDEX idx_category_id ON products(category_id);
 CREATE INDEX idx_product_id ON product_images(product_id);
