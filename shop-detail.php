@@ -2,8 +2,26 @@
 include 'includes/config.php';
 include 'template/header_other.php';
 
-// Lấy slug từ URL
-$slug = isset($_GET['slug']) ? sanitize($_GET['slug']) : (isset($_GET['id']) ? (int)$_GET['id'] : '');
+// Lấy slug từ URL path (/shop-detail/slug-name/)
+$slug = '';
+if (isset($_GET['slug'])) {
+    $slug = sanitize($_GET['slug']);
+} elseif (isset($_GET['id'])) {
+    $slug = (int)$_GET['id'];
+} else {
+    // Parse từ REQUEST_URI khi rewrite bởi Nginx
+    $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    // Remove base path if exists
+    $base_path = BASE_PATH;
+    if (strpos($request_uri, $base_path) === 0) {
+        $request_uri = substr($request_uri, strlen($base_path));
+    }
+    
+    // Extract slug từ /shop-detail/slug-name/ hoặc /shop-detail/slug-name
+    if (preg_match('#^shop-detail/([^/]+)/?$#', $request_uri, $matches)) {
+        $slug = trim($matches[1], '/');
+    }
+}
 
 // Nếu là ID cũ hoặc rỗng, redirect
 if (is_numeric($slug)) {
