@@ -17,9 +17,17 @@ if (isset($_GET['slug'])) {
         $request_uri = substr($request_uri, strlen($base_path));
     }
     
+    // DEBUG: Log để xem parse được không
+    error_log("DEBUG: REQUEST_URI=" . $_SERVER['REQUEST_URI']);
+    error_log("DEBUG: Parsed request_uri=" . $request_uri);
+    error_log("DEBUG: Base path=" . $base_path);
+    
     // Extract slug từ /shop-detail/slug-name/ hoặc /shop-detail/slug-name
     if (preg_match('#^shop-detail/([^/]+)/?$#', $request_uri, $matches)) {
         $slug = trim($matches[1], '/');
+        error_log("DEBUG: Slug matched=" . $slug);
+    } else {
+        error_log("DEBUG: Slug NOT matched - pattern failed");
     }
 }
 
