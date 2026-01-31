@@ -1,0 +1,14 @@
+# RewriteEngine - Admin Panel URL Rewriting
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Redirect /admin/ to /admin/index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^index/?$ index.php [L]
+    
+    # Keep all other direct file/folder access
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+</IfModule>
