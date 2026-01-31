@@ -5,14 +5,9 @@ include 'template/header_other.php';
 // Lấy slug từ URL path (/shop/slug-name/)
 $slug = '';
 
-// DEBUG
-error_log("DEBUG shop-detail.php: REQUEST_URI=" . $_SERVER['REQUEST_URI']);
-error_log("DEBUG shop-detail.php: GET=" . print_r($_GET, true));
-
 // Phương pháp 1: Từ router.php (được set qua $_GET['slug'])
 if (isset($_GET['slug'])) {
     $slug = sanitize($_GET['slug']);
-    error_log("DEBUG: Found slug from GET: " . $slug);
 } 
 // Phương pháp 2: Từ ID cũ
 elseif (isset($_GET['id'])) {
