@@ -59,7 +59,8 @@ $product_query = $conn->query("SELECT p.*, c.name as category_name, c.slug as ca
                               WHERE p.slug = '$slug' AND p.status = 1");
 
 if (!$product_query || $product_query->num_rows == 0) {
-    header("Location: " . BASE_URL);
+    http_response_code(404);
+    include '404.php';
     exit;
 }
 
