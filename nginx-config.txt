@@ -4,16 +4,16 @@ server {
 
     server_name 103.200.20.160;
     root /var/www/caycanhhangvinh;
-    index index.php index.html index.htm;
+    index router.php index.php index.html index.htm;
 
     client_max_body_size 20M;
 
     access_log /var/log/nginx/caycanhhangvinh-access.log;
     error_log /var/log/nginx/caycanhhangvinh-error.log;
 
-    # Main location
+    # Main location - redirect all requests to router.php
     location / {
-        try_files $uri $uri/ /index.php$is_args$args;
+        try_files $uri $uri/ /router.php$is_args$args;
     }
 
     # PHP-FPM

@@ -83,7 +83,7 @@ if ($category_result && $category_result->num_rows > 0) {
 
                             <!-- Overlay -->
                             <div class="product-overlay">
-                                <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($product['slug']); ?>/" class="btn btn-primary btn-sm">
+                                <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($product['slug']); ?>/" class="btn btn-primary btn-sm">
                                     <i class="fas fa-eye me-2"></i>Chi Tiết
                                 </a>
                             </div>
@@ -92,7 +92,7 @@ if ($category_result && $category_result->num_rows > 0) {
                         <!-- Product Info -->
                         <div class="p-4 bg-white">
                             <h5 class="product-name mb-2">
-                                <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($product['slug']); ?>/" class="text-dark text-decoration-none">
+                                <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($product['slug']); ?>/" class="text-dark text-decoration-none">
                                     <?php echo htmlspecialchars($product['name']); ?>
                                 </a>
                             </h5>
@@ -136,7 +136,7 @@ if ($category_result && $category_result->num_rows > 0) {
                             </div>
 
                             <!-- CTA Button -->
-                            <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($product['slug']); ?>/" class="btn btn-success btn-sm w-100">
+                            <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($product['slug']); ?>/" class="btn btn-success btn-sm w-100">
                                 <i class="fas fa-shopping-bag me-2"></i>Mua Ngay
                             </a>
                         </div>
@@ -244,7 +244,7 @@ if ($category_result && $category_result->num_rows > 0) {
 
                                             <!-- Overlay -->
                                             <div class="product-overlay">
-                                                <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($product['slug']); ?>/" class="btn btn-primary btn-sm">
+                                                <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($product['slug']); ?>/" class="btn btn-primary btn-sm">
                                                     <i class="fas fa-eye me-2"></i>Xem Chi Tiết
                                                 </a>
                                             </div>
@@ -253,7 +253,7 @@ if ($category_result && $category_result->num_rows > 0) {
                                         <!-- Product Info -->
                                         <div class="p-4 bg-white">
                                             <h5 class="product-name mb-2">
-                                                <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($product['slug']); ?>/" class="text-dark text-decoration-none">
+                                                <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($product['slug']); ?>/" class="text-dark text-decoration-none">
                                                     <?php echo htmlspecialchars($product['name']); ?>
                                                 </a>
                                             </h5>
@@ -297,7 +297,7 @@ if ($category_result && $category_result->num_rows > 0) {
                                             </div>
 
                                             <!-- CTA Button -->
-                                            <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($product['slug']); ?>/" class="btn btn-outline-primary btn-sm w-100">
+                                            <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($product['slug']); ?>/" class="btn btn-outline-primary btn-sm w-100">
                                                 <i class="fas fa-shopping-cart me-2"></i>Chi Tiết
                                             </a>
                                         </div>
@@ -357,7 +357,7 @@ if ($category_result && $category_result->num_rows > 0) {
 
                                             <!-- Overlay -->
                                             <div class="product-overlay">
-                                                <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($product['slug']); ?>/" class="btn btn-primary btn-sm">
+                                                <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($product['slug']); ?>/" class="btn btn-primary btn-sm">
                                                     <i class="fas fa-eye me-2"></i>Xem Chi Tiết
                                                 </a>
                                             </div>
@@ -366,7 +366,7 @@ if ($category_result && $category_result->num_rows > 0) {
                                         <!-- Product Info -->
                                         <div class="p-4 bg-white">
                                             <h5 class="product-name mb-2">
-                                                <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($product['slug']); ?>/" class="text-dark text-decoration-none">
+                                                <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($product['slug']); ?>/" class="text-dark text-decoration-none">
                                                     <?php echo htmlspecialchars($product['name']); ?>
                                                 </a>
                                             </h5>
@@ -410,7 +410,7 @@ if ($category_result && $category_result->num_rows > 0) {
                                             </div>
 
                                             <!-- CTA Button -->
-                                            <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($product['slug']); ?>/" class="btn btn-outline-primary btn-sm w-100">
+                                            <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($product['slug']); ?>/" class="btn btn-outline-primary btn-sm w-100">
                                                 <i class="fas fa-shopping-cart me-2"></i>Chi Tiết
                                             </a>
                                         </div>

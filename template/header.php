@@ -78,10 +78,19 @@
                     <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                         <div class="navbar-nav mx-auto">
                             <?php
-                            $current_page = basename($_SERVER['PHP_SELF']);
-                            $shop_active = (strpos($_SERVER['REQUEST_URI'], '/shop') !== false && $current_page !== 'index.php') ? 'active' : '';
-                            $contact_active = (strpos($_SERVER['REQUEST_URI'], '/contact') !== false) ? 'active' : '';
-                            $home_active = ($current_page === 'index.php' && strpos($_SERVER['REQUEST_URI'], '/shop') === false && strpos($_SERVER['REQUEST_URI'], '/contact') === false && strpos($_SERVER['REQUEST_URI'], '/shop-detail') === false) ? 'active' : '';
+                            // Get current page/route
+                            $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+                            $route = str_replace(BASE_PATH, '', $request_uri);
+                            $route = trim($route, '/');
+                            if (strpos($route, '?') !== false) {
+                                $route = explode('?', $route)[0];
+                            }
+                            $route_parts = array_filter(explode('/', $route));
+                            $first_part = isset($route_parts[0]) ? strtolower($route_parts[0]) : '';
+                            
+                            $home_active = empty($first_part) ? 'active' : '';
+                            $shop_active = ($first_part === 'shop') ? 'active' : '';
+                            $contact_active = ($first_part === 'contact') ? 'active' : '';
                             ?>
                             <a href="<?php echo BASE_URL; ?>" class="nav-item nav-link <?php echo $home_active; ?>">Trang chủ</a>
                             <a href="<?php echo BASE_URL; ?>shop" class="nav-item nav-link <?php echo $shop_active; ?>">Cửa hàng</a>

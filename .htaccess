@@ -2,22 +2,10 @@
     RewriteEngine On
     RewriteBase /caycanhhangvinh/
     
-    # Handle shop-detail slug URLs
+    # Allow real files and directories
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^shop-detail/([a-z0-9-]+)/?$ shop-detail.php?slug=$1 [QSA,L]
     
-    # Loại bỏ .php extension
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME}\.php -f
-    RewriteRule ^(.*)$ $1.php [NC,L]
-    
-    # Redirect .php files to non-.php version
-    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.php
-    RewriteRule ^(.*)\.php$ /$1 [L,R=301]
-    
-    # Handle index.php
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^index$ index.php [L]
+    # Redirect all requests to router.php (main entry point)
+    RewriteRule ^(.*)$ router.php [QSA,L]
 </IfModule>

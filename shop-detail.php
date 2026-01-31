@@ -2,51 +2,50 @@
 include 'includes/config.php';
 include 'template/header_other.php';
 
-// Lấy slug từ URL path (/shop-detail/slug-name/)
+// Lấy slug từ URL path (/shop/slug-name/)
 $slug = '';
+
+// Phương pháp 1: Từ router.php (được set qua $_GET['slug'])
 if (isset($_GET['slug'])) {
     $slug = sanitize($_GET['slug']);
-} elseif (isset($_GET['id'])) {
+} 
+// Phương pháp 2: Từ ID cũ
+elseif (isset($_GET['id'])) {
     $slug = (int)$_GET['id'];
-} else {
-    // Parse từ REQUEST_URI khi rewrite bởi Nginx
+} 
+// Phương pháp 3: Parse từ REQUEST_URI (fallback)
+else {
     $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    // Remove base path if exists
     $base_path = BASE_PATH;
+    
+    // Remove base path if exists
     if (strpos($request_uri, $base_path) === 0) {
         $request_uri = substr($request_uri, strlen($base_path));
     }
     
-    // DEBUG: Log để xem parse được không
-    error_log("DEBUG: REQUEST_URI=" . $_SERVER['REQUEST_URI']);
-    error_log("DEBUG: Parsed request_uri=" . $request_uri);
-    error_log("DEBUG: Base path=" . $base_path);
-    
-    // Extract slug từ /shop-detail/slug-name/ hoặc /shop-detail/slug-name
-    if (preg_match('#^shop-detail/([^/]+)/?$#', $request_uri, $matches)) {
+    // Extract slug từ /shop/slug-name/ hoặc /shop/slug-name
+    if (preg_match('#^shop/([^/]+)/?$#', $request_uri, $matches)) {
         $slug = trim($matches[1], '/');
-        error_log("DEBUG: Slug matched=" . $slug);
-    } else {
-        error_log("DEBUG: Slug NOT matched - pattern failed");
+    } elseif (preg_match('#^shop-detail/([^/]+)/?$#', $request_uri, $matches)) {
+        // Compatibility with old shop-detail URL
+        $slug = trim($matches[1], '/');
     }
 }
 
-// Nếu là ID cũ hoặc rỗng, redirect
-if (is_numeric($slug)) {
+// Nếu là ID cũ, redirect tới slug
+if (is_numeric($slug) && !empty($slug)) {
     $product_id = $slug;
     $prod = $conn->query("SELECT slug FROM products WHERE id = $product_id LIMIT 1");
     if ($prod && $prod->num_rows > 0) {
         $p = $prod->fetch_assoc();
-        header("Location: <?php echo BASE_URL; ?>shop-detail/" . urlencode($p['slug']) . "/");
-        exit;
-    } else {
-        header("Location: <?php echo BASE_URL; ?>");
+        header("Location: " . BASE_URL . "shop/" . urlencode($p['slug']) . "/");
         exit;
     }
 }
 
+// Nếu không có slug, redirect về trang shop
 if (empty($slug)) {
-    header("Location: <?php echo BASE_URL; ?>");
+    header("Location: " . BASE_URL . "shop");
     exit;
 }
 

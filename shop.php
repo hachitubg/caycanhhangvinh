@@ -249,7 +249,7 @@ $products_query = $conn->query("SELECT p.*, c.name as category_name FROM product
 
                                 <!-- Overlay -->
                                 <div class="product-overlay">
-                                    <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($product['slug']); ?>/" 
+                                    <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($product['slug']); ?>/" 
                                        class="btn btn-primary" 
                                        style="border-radius: 50px; padding: 10px 20px; font-size: 14px;">
                                         <i class="fas fa-eye me-2"></i>Xem Chi Tiết
@@ -260,7 +260,7 @@ $products_query = $conn->query("SELECT p.*, c.name as category_name FROM product
                             <!-- Product Info -->
                             <div class="p-4" style="flex: 1; display: flex; flex-direction: column;">
                                 <h5 class="product-name">
-                                    <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($product['slug']); ?>/">
+                                    <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($product['slug']); ?>/">
                                         <?php echo htmlspecialchars($product['name']); ?>
                                     </a>
                                 </h5>
@@ -304,7 +304,7 @@ $products_query = $conn->query("SELECT p.*, c.name as category_name FROM product
                                 </div>
 
                                 <!-- CTA Button -->
-                                <a href="<?php echo BASE_URL; ?>shop-detail/<?php echo htmlspecialchars($product['slug']); ?>/" 
+                                <a href="<?php echo BASE_URL; ?>shop/<?php echo htmlspecialchars($product['slug']); ?>/" 
                                    class="btn btn-success btn-sm w-100 mt-auto" 
                                    style="border-radius: 50px; padding: 10px 16px; font-weight: 600; font-size: 14px;">
                                     <i class="fas fa-shopping-bag me-1"></i>Mua Ngay
