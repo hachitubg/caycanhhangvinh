@@ -1,8 +1,8 @@
 <?php
 // Database Configuration
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_USER', 'dongson_user');
+define('DB_PASS', 'Dongson@2024#VPS');
 define('DB_NAME', 'caycanhhangvinh');
 
 // Create connection
