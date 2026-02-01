@@ -129,37 +129,43 @@
         <!-- Single Page Header start -->
         <div class="container-fluid page-header py-5">
             <?php
-                // Get current page filename
-                $current_page = basename($_SERVER['PHP_SELF']);
-                
-                // Define page titles and breadcrumbs
-                $page_config = array(
-                    'contact.php' => array(
-                        'title' => 'Liên hệ',
-                        'breadcrumb' => 'Liên hệ'
-                    ),
-                    'shop.php' => array(
-                        'title' => 'Cửa hàng',
-                        'breadcrumb' => 'Cửa hàng'
-                    ),
-                    'shop-detail.html' => array(
-                        'title' => 'Chi tiết sản phẩm',
-                        'breadcrumb' => 'Chi tiết sản phẩm'
-                    ),
-                    'shop-detail.php' => array(
-                        'title' => 'Chi tiết sản phẩm',
-                        'breadcrumb' => 'Chi tiết sản phẩm'
-                    )
-                );
-                
-                // Get config for current page, default to page filename if not found
-                $page_title = isset($page_config[$current_page]) ? $page_config[$current_page]['title'] : ucfirst(str_replace(array('.php', '.html', '-'), array('', '', ' '), $current_page));
-                $breadcrumb_text = isset($page_config[$current_page]) ? $page_config[$current_page]['breadcrumb'] : $page_title;
+                // Get current "route" after BASE_PATH
+                $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+                $route = str_replace(BASE_PATH, '', $request_uri);
+                $route = trim($route, '/');
+                if (strpos($route, '?') !== false) {
+                    $route = explode('?', $route)[0];
+                }
+                $route_parts = array_values(array_filter(explode('/', $route)));
+                $first_part = isset($route_parts[0]) ? strtolower($route_parts[0]) : '';
+
+                // Map routes to page titles and breadcrumb
+                $page_map = [
+                    '' => ['title' => 'Trang chủ', 'breadcrumb' => 'Trang chủ'],
+                    'contact' => ['title' => 'Liên hệ', 'breadcrumb' => 'Liên hệ'],
+                    'shop' => ['title' => 'Cửa hàng', 'breadcrumb' => 'Cửa hàng'],
+                    'shop-detail' => ['title' => 'Chi tiết sản phẩm', 'breadcrumb' => 'Chi tiết sản phẩm'],
+                    'cart' => ['title' => 'Giỏ hàng', 'breadcrumb' => 'Giỏ hàng'],
+                    'chackout' => ['title' => 'Thanh toán', 'breadcrumb' => 'Thanh toán'],
+                    'testimonial' => ['title' => 'Đánh giá', 'breadcrumb' => 'Đánh giá'],
+                    '404' => ['title' => 'Không tìm thấy trang', 'breadcrumb' => '404'],
+                ];
+
+                if (isset($page_map[$first_part])) {
+                    $page_title = $page_map[$first_part]['title'];
+                    $breadcrumb_text = $page_map[$first_part]['breadcrumb'];
+                } else {
+                    // Fallback for unknown routes
+                    $page_title = !empty($first_part) ? ucfirst(str_replace('-', ' ', $first_part)) : 'Trang';
+                    $breadcrumb_text = $page_title;
+                }
             ?>
             <h1 class="text-center text-white display-6"><?php echo $page_title; ?></h1>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a href="<?php echo BASE_URL; ?>">Trang chủ</a></li>
+                <?php if($page_title !== 'Trang chủ') : ?>
                 <li class="breadcrumb-item active text-white"><?php echo $breadcrumb_text; ?></li>
+                <?php endif; ?>
             </ol>
         </div>
         <!-- Single Page Header End -->

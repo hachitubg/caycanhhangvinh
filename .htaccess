@@ -2,10 +2,10 @@
     RewriteEngine On
     
     # -------- Localhost --------
-    RewriteBase /caycanhhangvinh/
+    # RewriteBase /caycanhhangvinh/
     
     # -------- Host --------
-    # RewriteBase /
+    RewriteBase /
     
     # Allow real files and directories
     RewriteCond %{REQUEST_FILENAME} !-f
