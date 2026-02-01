@@ -40,9 +40,14 @@ if (!defined('DB_HOST')) {
     // Check REAL hostname without port
     $hostname = explode(':', $host)[0];
     
-    // For production: always use root path (/)
-    // The website is deployed to the root of the web server
-    $base_path = '/';
+    // Determine BASE_PATH based on hostname
+    // For localhost/127.0.0.1: use /caycanhhangvinh/ (project folder name)
+    // For production: use / (deployed at root)
+    if ($hostname === 'localhost' || $hostname === '127.0.0.1') {
+        $base_path = '/caycanhhangvinh/';
+    } else {
+        $base_path = '/';
+    }
 
     define('BASE_URL', $protocol . '://' . $host . $base_path);
     define('BASE_PATH', $base_path);

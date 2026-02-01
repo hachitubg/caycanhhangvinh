@@ -10,8 +10,15 @@ include 'includes/config.php';
 $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 // Remove base path to get the route
-// Use ltrim instead of str_replace to avoid removing all slashes
-$route = ltrim($request_uri, '/');
+$base_path = BASE_PATH; // e.g., '/caycanhhangvinh/' for localhost or '/' for production
+$route = $request_uri;
+
+// Remove leading base_path from route
+if (strpos($route, $base_path) === 0) {
+    $route = substr($route, strlen($base_path));
+}
+
+// Clean up the route
 $route = trim($route, '/');
 
 // Remove query string if exists
@@ -25,9 +32,6 @@ $route_parts = array_values(array_filter(explode('/', $route)));
 // Get first and second part (if exists)
 $first_part = isset($route_parts[0]) ? strtolower($route_parts[0]) : '';
 $second_part = isset($route_parts[1]) ? $route_parts[1] : ''; // Keep case for product slug
-
-// DEBUG: Uncomment to see routing info
-// echo "<!-- DEBUG: Route: $route | Parts: " . implode(', ', $route_parts) . " | First: $first_part | Second: $second_part -->\n";
 
 // Default to home
 if (empty($route) || $route === 'index.php') {
